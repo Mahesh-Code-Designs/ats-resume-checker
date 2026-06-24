@@ -14,6 +14,7 @@ def upload_resume(request):
         results = []
 
         for resume in files:
+            os.makedirs(settings.MEDIA_ROOT, exist_ok=True)
             file_path = os.path.join(settings.MEDIA_ROOT, resume.name )
 
             with open (file_path , 'wb+') as destination:
@@ -45,7 +46,10 @@ def upload_resume(request):
     return render(request,'resumeapp/upload.html')
 
 def dashboard(request):
-    data = pd.read_csv('shortlisted.csv')
+    if os.path.exists('shortlisted.csv'):
+        data = pd.read_csv('shortlisted.csv')
+    else:
+        data = pd.DataFrame(columns=['Name','Email','Score'])
     count = len(data)
     avg = data['Score'].mean() if not data.empty else 0
 
