@@ -1,6 +1,8 @@
 import PyPDF2
 import csv
 import re
+import os
+
 
 
 
@@ -33,8 +35,13 @@ class Resumepage:
         return lines[0].strip() if lines else "Unknown"
     
     def load_keywords(self):
-        with open('keywords.csv', 'r') as file:
-            reader =csv.reader(file)
+        file_path = os.path.join(
+            os.path.dirname(os.path.dirname(__file__)),
+            'keywords.csv'
+        )
+
+        with open(file_path, 'r', encoding='utf-8') as file:
+            reader = csv.reader(file)
             return [row[0].lower() for row in reader]
     
     def calculate_score(self):

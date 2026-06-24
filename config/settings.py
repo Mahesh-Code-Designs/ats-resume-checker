@@ -111,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-STATICFILEDS_DIRS =[
+STATICFILES_DIRS =[
     os.path.join(BASE_DIR, 'resumeapp/static')
 ]
 
@@ -133,7 +133,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILEDS_DIRS = [
+STATICFILES_DIRS = [
     BASE_DIR / "resumeapp/static",
 ]
 
