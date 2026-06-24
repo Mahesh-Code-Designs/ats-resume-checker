@@ -1,0 +1,48 @@
+{% load static %}
+<!doctype html>
+<html>
+  <head>
+    <title>ATS Resume System</title>
+    <link rel="stylesheet" href="{% static 'resumeapp/style.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>ATS Resume Screening</h1>
+
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="resume" multiple required />
+        <button type="submit">Upload</button>
+      </form>
+
+      <br />
+      {% if results %}
+      <table border="1">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Score</th>
+          <th>Status</th>
+        </tr>
+        {% for result in results %}
+        <tr>
+          <td>{{ result.name }}</td>
+          <td>{{ result.email }}</td>
+          <td>{{ result.score }}</td>
+          <td>
+            {% if result.score >= 60 %}
+            <span style="color: green"> Shortlisted</span>
+            {% else %}
+            <span style="color: red"> Rejected</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% endif %}
+
+      <br />
+      <a href="/dashboard"> Go to Dashboard</a>
+    </div>
+  </body>
+</html>

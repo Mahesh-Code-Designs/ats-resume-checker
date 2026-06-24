@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel ="stylesheet" href = "{% static 'resumeapp/style.css' %}">
+</head>
+<body>
+<div class = "container">
+    <h2>Analytics Dashboard</h2>
+
+    <p><strong>Total shortlisted :</strong> {{ count }}</p>
+    <p><strong>Average ATS Score :</strong> {{ avg }}</p>
+
+    <br>
+    <a href="{% url 'download_csv' %}">
+        <button>Download CSV </button>
+    </a>
+
+    <br></br>
+    <a href = "/"> Back</a>
+</div>
+
+</body>
+</html>
